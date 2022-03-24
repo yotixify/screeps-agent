@@ -13,12 +13,6 @@ const schedule = config.require("schedule", {
   pattern: /^(rate)|(cron)\(.*\)$/,
 });
 
-if (!/ /.test(schedule)) {
-  throw new Error(
-    "Configured schedule must match https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html"
-  );
-}
-
 const region = pulumi.output(aws.getRegion());
 
 const screepsTokenSecret = new aws.secretsmanager.Secret("screeps-token", {
