@@ -1,0 +1,6 @@
+config:
+  aws:region: eu-west-1
+  screeps-agent:memoryPath: stats
+  screeps-agent:shard: shard3
+  screeps-agent:prefix: shard3
+  screeps-agent:schedule: rate(1 minute)

@@ -1,0 +1,3 @@
+name: screeps-agent
+runtime: nodejs
+description: A screeps stat collection agent
