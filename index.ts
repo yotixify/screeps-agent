@@ -47,10 +47,19 @@ const role = new aws.iam.Role("screeps-collect-stats-role", {
   assumeRolePolicy: aws.iam.assumeRolePolicyForPrincipal({
     Service: "lambda.amazonaws.com",
   }),
-  managedPolicyArns: [secretsPolicy.arn],
 });
 
-const collectStats = async () => {
+const secretsAttachment = new aws.iam.RolePolicyAttachment(
+  "screeps-collect-stats-role-attachment",
+  {
+    role,
+    policyArn: secretsPolicy.arn,
+  }
+);
+
+const collectStats: aws.cloudwatch.EventRuleEventHandler = async (
+  _event: aws.cloudwatch.EventRuleEvent
+) => {
   const secrets = new aws.sdk.SecretsManager({
     region: region.get().id,
   });
