@@ -2,7 +2,7 @@
   "name": "screeps-agent",
   "license": "MIT",
   "scripts": {
-    "buuild": "tsc"
+    "build": "tsc"
   },
   "devDependencies": {
     "@types/node": "^14"
