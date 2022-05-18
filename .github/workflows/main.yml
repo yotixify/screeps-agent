@@ -27,11 +27,8 @@ jobs:
       - name: Build
         run: yarn build
 
-      - name: Move node_modules to dist
-        run: mv node_modules dist/node_modules
-
       - name: Zip
-        run: (cd dist && zip -r ../function.zip .)
+        run: (zip -r ../function.zip .)
 
       - name: Deploy to AWS
         uses: appleboy/lambda-action@master
@@ -40,4 +37,4 @@ jobs:
           aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws_region: ${{ secrets.AWS_REGION }}
           function_name: screeps-agent-test
-          zip_file: function.zip
+          zip_file: ../function.zip
